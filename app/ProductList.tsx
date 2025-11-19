@@ -3,11 +3,9 @@
 import { useState, useEffect } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
-// On initialise Supabase pour le client (navigateur)
-// Remplacez la ligne 7 par tout ce bloc :
-
+// Client Supabase avec vos clés (Méthode Brute)
 const supabase = createClientComponentClient({
-  supabaseUrl: 'https://bphwybuhytsxevvugxhu.supabase.co',
+  supabaseUrl: 'https://bphwvybuhytsxevvugxhu.supabase.co',
   supabaseKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJwaHd5YnVoeXRzeGV2dnVneGh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMzODU4MDAsImV4cCI6MjA3ODk2MTgwMH0.y5TgsneXqMIMKiWcc42r2A0SnqoA1pFPpmoqal-hauE'
 })
 
@@ -171,7 +169,15 @@ export default function ProductList({ items, farmId }: { items: any[], farmId: s
              <div className="w-full h-40 mb-4 overflow-hidden">
               <img src={item.products?.generic_products?.image_url || 'https://placehold.co/300x200'} alt={item.products?.name} className="w-full h-full object-contain" />
             </div>
+            
+            {/* Titre */}
             <h2 className="text-lg font-bold text-gray-800 mb-1 text-center">{item.products?.name}</h2>
+            
+            {/* --- NOUVEAU : ORIGINE ET CATÉGORIE --- */}
+            <p className="text-xs text-gray-500 mb-4 text-center uppercase tracking-wide">
+              {item.products?.origin} • {item.products?.category}
+            </p>
+
             <div className="w-full flex justify-between items-center mt-auto pt-2 border-t border-dashed border-gray-100">
               <div className="flex flex-col"><span className="text-green-600 font-bold text-xl">{item.price} €</span><span className="text-xs text-gray-400">/ {item.products?.unit}</span></div>
               <button onClick={() => openModal(item)} className="bg-green-50 text-green-600 hover:bg-green-500 hover:text-white w-10 h-10 rounded-full flex items-center justify-center shadow-sm">+</button>

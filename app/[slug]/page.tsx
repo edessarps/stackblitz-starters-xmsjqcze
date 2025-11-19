@@ -28,11 +28,15 @@ export default async function FarmShop({ params }: { params: { slug: string } })
         id,
         name,
         unit,
+        origin,     
+        category,  
         generic_products (
           image_url
         )
       )
     `)
+    .eq('farm_id', farm.id)
+    .eq('is_visible', true);
     .eq('farm_id', farm.id)
     .eq('is_visible', true);
 
