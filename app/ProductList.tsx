@@ -111,7 +111,7 @@ export default function ProductList({ items, farmId }: { items: any[], farmId: s
 
       const orderItems = cart.map(item => ({
         order_id: orderData.id,
-        product_id: item.products.id, // Correction ici pour cibler le bon ID
+        product_id: item.products.id, 
         quantity: item.quantity,
         price_at_order: item.price
       }))
@@ -198,10 +198,12 @@ export default function ProductList({ items, farmId }: { items: any[], farmId: s
         <div className="fixed inset-0 z-50 flex justify-end">
           <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" onClick={() => setIsCartOpen(false)}></div>
           <div className="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
+            
             <div className="p-6 border-b flex justify-between items-center bg-green-50">
               <h2 className="text-xl font-bold text-green-900">Votre Panier 🥕</h2>
               <button onClick={() => setIsCartOpen(false)} className="text-gray-500 hover:text-red-500">✕</button>
             </div>
+
             <div className="flex-1 overflow-y-auto p-6">
               {cart.length === 0 ? (<p className="text-gray-400 text-center mt-10">Vide.</p>) : (
                 <ul className="space-y-4 mb-8">
@@ -243,4 +245,20 @@ export default function ProductList({ items, farmId }: { items: any[], farmId: s
                               <input type="text" placeholder="Prénom" className="p-3 border rounded-lg" onChange={e => setFormData({...formData, firstName: e.target.value})} />
                               <input type="text" placeholder="Nom" className="p-3 border rounded-lg" onChange={e => setFormData({...formData, lastName: e.target.value})} />
                             </div>
-                            <input type="tel" placeholder="Téléphone" className="w-full p
+                            <input type="tel" placeholder="Téléphone" className="w-full p-3 border rounded-lg" onChange={e => setFormData({...formData, phone: e.target.value})} />
+                            <input type="password" placeholder="Mot de passe" value={password} onChange={e => setPassword(e.target.value)} className="w-full p-3 border rounded-lg" />
+                            <input type="password" placeholder="Confirmer" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} className="w-full p-3 border rounded-lg" />
+                            <button onClick={handleSignup} className="w-full bg-green-600 text-white py-3 rounded-lg">S&apos;inscrire</button>
+                          </div>
+                        )}
+                      </div>
+                   )}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
