@@ -4,7 +4,12 @@ import { useState, useEffect } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 // On initialise Supabase pour le client (navigateur)
-const supabase = createClientComponentClient()
+// Remplacez la ligne 7 par tout ce bloc :
+
+const supabase = createClientComponentClient({
+  supabaseUrl: 'https://bphwybuhytsxevvugxhu.supabase.co',
+  supabaseKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJwaHd5YnVoeXRzeGV2dnVneGh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMzODU4MDAsImV4cCI6MjA3ODk2MTgwMH0.y5TgsneXqMIMKiWcc42r2A0SnqoA1pFPpmoqal-hauE'
+})
 
 export default function ProductList({ items, farmId }: { items: any[], farmId: string }) {
   // --- ÉTATS ---
