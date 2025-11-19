@@ -16,12 +16,8 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
+/* On ajoute une couleur de fond gris clair pour tout le site, 
+   sinon les cartes blanches ne se verront pas sur un fond blanc ! */
+   body {
+    background-color: #f3f4f6; 
+  }

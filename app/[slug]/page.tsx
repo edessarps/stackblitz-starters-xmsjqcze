@@ -41,12 +41,20 @@ export default async function FarmShop({ params }: { params: { slug: string } })
   }
 
   return (
-    <main style={{ padding: '20px', fontFamily: 'sans-serif' }}>
-      {/* Le titre devient dynamique ! */}
-      <h1>Bienvenue chez : {farm.name} 🚜</h1>
-      
-      <ProductList items={items || []} />
-
+    <main className="min-h-screen p-8 font-sans">
+      <div className="max-w-7xl mx-auto">
+        
+        {/* En-tête de la ferme */}
+        <div className="mb-10 text-center">
+          <h1 className="text-4xl font-extrabold text-gray-800 tracking-tight mb-2">
+            {farm.name} <span className="text-green-500">.</span>
+          </h1>
+          <p className="text-gray-500">Commandez vos produits frais directement au producteur</p>
+        </div>
+        
+        <ProductList items={items || []} />
+        
+      </div>
     </main>
   );
 }
