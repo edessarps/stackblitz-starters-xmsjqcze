@@ -8,7 +8,6 @@ export default function ProductList({ items }: { items: any[] }) {
   const addToCart = (product: any) => {
     const newCart = [...cart, product]
     setCart(newCart)
-    // On retire l'alerte pour faire plus pro, on voit le compteur monter
   }
 
   return (
@@ -33,7 +32,7 @@ export default function ProductList({ items }: { items: any[] }) {
         {items?.map((item: any) => (
           <div key={item.id} className="group bg-white rounded-3xl p-4 shadow-sm hover:shadow-xl transition-all duration-300 border border-transparent hover:border-green-100 flex flex-col items-center relative">
             
-            {/* Icône Coeur (Décoratif pour l'instant) */}
+            {/* Icône Coeur */}
             <div className="absolute top-4 right-4 text-gray-300 hover:text-red-400 cursor-pointer transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
@@ -54,7 +53,7 @@ export default function ProductList({ items }: { items: any[] }) {
               {item.products?.name}
             </h2>
             
-            {/* Description légère (Lorem ipsum dans votre image) */}
+            {/* Description légère */}
             <p className="text-xs text-gray-400 mb-4 text-center">
               Origine France • Catégorie 1
             </p>
@@ -74,7 +73,6 @@ export default function ProductList({ items }: { items: any[] }) {
                 onClick={() => addToCart(item)}
                 className="bg-green-50 text-green-600 hover:bg-green-500 hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 shadow-sm active:scale-90"
               >
-                {/* Icône Plus (+) */}
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                 </svg>
@@ -87,7 +85,9 @@ export default function ProductList({ items }: { items: any[] }) {
       
       {items?.length === 0 && (
          <div className="text-center py-20 text-gray-400">
-            {/* On remplace l'apostrophe par &apos; */}
             <p>Aucun produit sur l&apos;étal aujourd&apos;hui.</p>
          </div>
       )}
+    </div>
+  )
+}
