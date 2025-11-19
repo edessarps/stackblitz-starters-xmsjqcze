@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { supabase } from '../utils/supabaseClient'; // Vérifiez que le chemin vers utils est bon
 
 export default async function Home() {
@@ -25,16 +26,18 @@ export default async function Home() {
       <h1>Bienvenue sur Cagette.pro 🥬</h1>
       
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '20px' }}>
-        {products?.map((product) => (
+        {products?.map((product: any) => (
           <div key={product.id} style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '8px' }}>
             {/* On affiche l'image récupérée via la relation. 
                 Note: generic_products est un objet ou un tableau selon la relation. Ici on suppose un lien direct. */}
             {product.generic_products && (
-              <img 
-                src={product.generic_products.image_url} 
-                alt={product.name} 
-                style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '4px' }}
-              />
+              <Image 
+              src={product.generic_products.image_url} 
+              alt={product.name} 
+              width={300} // Mettez une taille approximative
+              height={150}
+              style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '4px' }}
+            />
             )}
             
             <h3>{product.name}</h3>
