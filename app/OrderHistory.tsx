@@ -4,7 +4,12 @@ import { useEffect, useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 export default function OrderHistory() {
-  const supabase = createClientComponentClient()
+  // Utilisation de la méthode brute pour être sûr de la connexion
+  const supabase = createClientComponentClient({
+    supabaseUrl: 'https://bphwvybuhytsxevvugxhu.supabase.co',
+    supabaseKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJwaHd5YnVoeXRzeGV2dnVneGh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMzODU4MDAsImV4cCI6MjA3ODk2MTgwMH0.y5TgsneXqMIMKiWcc42r2A0SnqoA1pFPpmoqal-hauE'
+  })
+
   const [orders, setOrders] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState<any>(null)
@@ -20,7 +25,7 @@ export default function OrderHistory() {
       }
       setUser(session.user)
 
-      // 2. On récupère les commandes ET le détail des produits (jointure imbriquée)
+      // 2. On récupère les commandes
       const { data, error } = await supabase
         .from('orders')
         .select(`
@@ -42,8 +47,14 @@ export default function OrderHistory() {
     fetchOrders()
   }, [])
 
-  if (loading) return <div className="p-8 text-center">Chargement de l'historique...</div>
-  if (!user) return <div className="p-8 text-center text-gray-500">Connectez-vous dans l'onglet "Vitrine" pour voir vos commandes.</div>
+  // --- CORRECTION ICI : Apostrophes remplacées par &apos; et guillemets par &quot; ---
+  if (loading) return <div className="p-8 text-center">Chargement de l&apos;historique...</div>
+  
+  if (!user) return (
+    <div className="p-8 text-center text-gray-500">
+      Connectez-vous dans l&apos;onglet &quot;Vitrine&quot; pour voir vos commandes.
+    </div>
+  )
 
   return (
     <div className="max-w-2xl mx-auto animate-in fade-in">
