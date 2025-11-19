@@ -1,22 +1,20 @@
 import { supabase } from '../../utils/supabaseClient';
-import ProductList from '../ProductList';
+import FarmShop from '../FarmShop'; // <--- On importe le nouveau composant
 
-export default async function FarmShop({ params }: { params: { slug: string } }) {
+export default async function Page({ params }: { params: { slug: string } }) {
   
   const { slug } = params;
 
-  // 1. On récupère les infos de la ferme
+  // 1. Récupération Ferme
   const { data: farm, error: farmError } = await supabase
     .from('farms')
     .select('id, name')
     .eq('slug', slug)
     .single();
 
-  if (farmError || !farm) {
-    return <div style={{padding: 20}}>Ferme introuvable ou URL incorrecte.</div>;
-  }
+  if (farmError || !farm) return <div style={{padding: 20}}>Ferme introuvable.</div>;
 
-  // 2. On récupère l'inventaire
+  // 2. Récupération Inventaire
   const { data: items, error } = await supabase
     .from('inventory')
     .select(`
@@ -30,34 +28,16 @@ export default async function FarmShop({ params }: { params: { slug: string } })
         unit,
         origin,
         category,
-        generic_products (
-          image_url
-        )
+        generic_products ( image_url )
       )
     `)
     .eq('farm_id', farm.id)
     .eq('is_visible', true);
 
-  if (error) {
-    return <div>Erreur de chargement du stock.</div>;
-  }
+  if (error) return <div>Erreur stock.</div>;
 
+  // 3. On rend le "FarmShop" qui contient les onglets
   return (
-    <main className="min-h-screen p-8 font-sans bg-gray-50">
-      <div className="max-w-7xl mx-auto">
-        
-        {/* En-tête de la ferme */}
-        <div className="mb-10 text-center">
-          <h1 className="text-4xl font-extrabold text-gray-800 tracking-tight mb-2">
-            {farm.name} <span className="text-green-500">.</span>
-          </h1>
-          <p className="text-gray-500">Commandez vos produits frais directement au producteur</p>
-        </div>
-        
-        {/* On passe les données à la liste */}
-        <ProductList items={items || []} farmId={farm.id} />
-        
-      </div>
-    </main>
+    <FarmShop farm={farm} items={items || []} />
   );
 }
