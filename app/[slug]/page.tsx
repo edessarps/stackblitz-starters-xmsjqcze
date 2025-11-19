@@ -28,15 +28,13 @@ export default async function FarmShop({ params }: { params: { slug: string } })
         id,
         name,
         unit,
-        origin,     
-        category,  
+        origin,
+        category,
         generic_products (
           image_url
         )
       )
     `)
-    .eq('farm_id', farm.id)
-    .eq('is_visible', true);
     .eq('farm_id', farm.id)
     .eq('is_visible', true);
 
@@ -56,7 +54,7 @@ export default async function FarmShop({ params }: { params: { slug: string } })
           <p className="text-gray-500">Commandez vos produits frais directement au producteur</p>
         </div>
         
-        {/* On passe bien les données et l'ID de la ferme */}
+        {/* On passe les données à la liste */}
         <ProductList items={items || []} farmId={farm.id} />
         
       </div>
