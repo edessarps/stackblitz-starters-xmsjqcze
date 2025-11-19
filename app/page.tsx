@@ -16,10 +16,13 @@ export default async function Home() {
 
   // Gestion simple d'erreur (s'affiche dans la console du serveur)
   if (error) {
-    console.error("Erreur Supabase:", error);
-    return <div>Erreur de chargement des données.</div>;
+    return (
+      <div style={{ color: 'white', padding: '20px' }}>
+        <h2>Erreur Technique :</h2>
+        <pre>{JSON.stringify(error, null, 2)}</pre>
+      </div>
+    );
   }
-
   return (
     <main style={{ padding: '20px', fontFamily: 'sans-serif' }}>
       <h1>Bienvenue sur Cagette.pro 🥬</h1>
