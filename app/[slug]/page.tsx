@@ -19,13 +19,18 @@ export default async function FarmShop({ params }: { params: { slug: string } })
   }
 
   // 2. Maintenant on récupère l'inventaire UNIQUEMENT pour cette ferme (farm.id)
+
+
+  
   const { data: items, error } = await supabase
     .from('inventory')
     .select(`
       id,
       price,
       stock_quantity,
+      farm_id,   // <--- AJOUTEZ CETTE LIGNE
       products (
+        id,      // <--- ET CELLE-CI (pour avoir l'ID du produit)
         name,
         unit,
         generic_products (
