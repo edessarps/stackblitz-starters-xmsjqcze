@@ -87,9 +87,7 @@ export default function ProductList({ items }: { items: any[] }) {
       
       {items?.length === 0 && (
          <div className="text-center py-20 text-gray-400">
-            <p>Aucun produit sur l'étal aujourd'hui.</p>
+            {/* On remplace l'apostrophe par &apos; */}
+            <p>Aucun produit sur l&apos;étal aujourd&apos;hui.</p>
          </div>
       )}
-    </div>
-  )
-}
