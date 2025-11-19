@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { supabase } from '../utils/supabaseClient'; // Vérifiez que le chemin vers utils est bon
 
 export default async function Home() {
@@ -31,13 +30,11 @@ export default async function Home() {
             {/* On affiche l'image récupérée via la relation. 
                 Note: generic_products est un objet ou un tableau selon la relation. Ici on suppose un lien direct. */}
             {product.generic_products && (
-              <Image 
-              src={product.generic_products.image_url} 
-              alt={product.name} 
-              width={300} // Mettez une taille approximative
-              height={150}
-              style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '4px' }}
-            />
+              <img 
+                src={product.generic_products.image_url} 
+                alt={product.name} 
+                style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '4px' }}
+              />
             )}
             
             <h3>{product.name}</h3>
