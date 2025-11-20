@@ -6,7 +6,7 @@ import { createClient } from '@supabase/supabase-js'
 
 // CHANGEMENT ICI : On initialise avec la méthode standard
 const supabase = createClient(
-  'https://bphwvybuhytsxevvugxhu.supabase.co',
+  'https://bphwybuhytsxevvugxhu.supabase.co',
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJwaHd5YnVoeXRzeGV2dnVneGh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMzODU4MDAsImV4cCI6MjA3ODk2MTgwMH0.y5TgsneXqMIMKiWcc42r2A0SnqoA1pFPpmoqal-hauE'
 )
 
