@@ -1,13 +1,14 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+// CHANGEMENT ICI : On importe le client standard, plus stable pour cette méthode
+import { createClient } from '@supabase/supabase-js'
 
-// Client Supabase avec vos clés (Méthode Brute)
-const supabase = createClientComponentClient({
-  supabaseUrl: 'https://bphwvybuhytsxevvugxhu.supabase.co',
-  supabaseKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJwaHd5YnVoeXRzeGV2dnVneGh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMzODU4MDAsImV4cCI6MjA3ODk2MTgwMH0.y5TgsneXqMIMKiWcc42r2A0SnqoA1pFPpmoqal-hauE'
-})
+// CHANGEMENT ICI : On initialise avec la méthode standard
+const supabase = createClient(
+  'https://bphwvybuhytsxevvugxhu.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJwaHd5YnVoeXRzeGV2dnVneGh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMzODU4MDAsImV4cCI6MjA3ODk2MTgwMH0.y5TgsneXqMIMKiWcc42r2A0SnqoA1pFPpmoqal-hauE'
+)
 
 export default function ProductList({ items, farmId }: { items: any[], farmId: string }) {
   // --- ÉTATS ---
@@ -173,7 +174,7 @@ export default function ProductList({ items, farmId }: { items: any[], farmId: s
             {/* Titre */}
             <h2 className="text-lg font-bold text-gray-800 mb-1 text-center">{item.products?.name}</h2>
             
-            {/* --- NOUVEAU : ORIGINE ET CATÉGORIE --- */}
+            {/* Origine et Catégorie */}
             <p className="text-xs text-gray-500 mb-4 text-center uppercase tracking-wide">
               {item.products?.origin} • {item.products?.category}
             </p>
